@@ -88,7 +88,7 @@ objects:
     spec:
       storageClassName: "${TAILS_FILES_VOLUME_CLASS}"
       accessModes:
-      - ReadWriteMany
+      - ReadWriteOnce
       resources:
         requests:
           storage: "${TAILS_FILES_VOLUME_SIZE}"
@@ -181,14 +181,13 @@ objects:
                   --seed "${INDY_WALLET_SEED}"
                   --admin '0.0.0.0' ${ADMIN_INTERFACE_PORT}
                   $([ ! -z "${AGENT_ADMIN_API_KEY}" ] && echo "--admin-api-key ${AGENT_ADMIN_API_KEY}" || echo "--admin-insecure-mode")
-                  --label "${AGENT_NAME}"
                   --log-level ${AGENT_LOG_LEVEL}
                   --tails-server-base-url ${TAILS_SERVER_BASE_URL});
               env:
                 - name: GENESIS_URL
                   value: ${GENESIS_FILE_URL}
                 - name: AGENT_WALLET_NAME
-                  value: ${NAME}${SUFFIX}-wallet
+                  value: ${NAME}${SUFFIX}_wallet
                 - name: WALLET_TYPE
                   value: ${WALLET_STORAGE_TYPE}
                 - name: POSTGRESQL_WALLET_HOST
@@ -240,10 +239,12 @@ objects:
                     secretKeyRef:
                       name: ${NAME}${SUFFIX}
                       key: admin-api-key
-                - name: AGENT_NAME
+                - name: ACAPY_LABEL
                   value: ${AGENT_LABEL_NAME}
                 - name: AGENT_ENDPOINT
                   value: ${AGENT_BASE_URL}
+                - name: ACAPY_READ_ONLY_LEDGER
+                  value: ${AGENT_READ_ONLY_LEDGER}
                 - name: AGENT_LOG_LEVEL
                   value: ${LOG_LEVEL}
                 - name: TAILS_FILES_DIR
@@ -347,11 +348,6 @@ parameters:
     displayName: Namespace containing application images.
     required: true
     value: devex-von-tools
-  - name: NAMESPACE_NAME
-    displayName: Namespace Name
-    description: The name of the namespace being deployed to.
-    required: true
-    value: devex-von
   - name: SOURCE_IMAGE_NAME
     displayName: Source Image Name
     description: The name of the source image to use for the service.
@@ -367,6 +363,11 @@ parameters:
     description: The label/name of the agent
     required: true
     value: issuer-kit-agent
+  - name: AGENT_READ_ONLY_LEDGER
+    displayName: Set read only ledger flag.
+    description: Enable/Disable the read only ledger flag.  Controls the inclusion/exclusion of the agent '--read-only-ledger' startup parameter.  Defaults to disabled.
+    required: true
+    value: "false"
   - name: AGENT_BASE_URL
     displayName: Agent endpoint
     description: The endpoint of the agent
@@ -414,9 +415,9 @@ parameters:
   - name: TAILS_FILES_VOLUME_CLASS
     displayName: Tails File Storage Volume Class
     description:
-      The class of the volume; gluster-file, gluster-block, gluster-file-db, netapp-file-standard, netapp-block-standard.
+      The class of the volume; gluster-file, gluster-block, gluster-file-db, gp2, netapp-block-standard.
     required: true
-    value: netapp-file-standard
+    value: gp2
   - name: TAILS_FILES_VOLUME_SIZE
     displayName: Tails File Storage Dir
     description:
