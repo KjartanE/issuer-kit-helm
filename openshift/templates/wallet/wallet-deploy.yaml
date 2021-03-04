@@ -250,9 +250,9 @@ parameters:
     value: 1Gi
   - name: PERSISTENT_VOLUME_CLASS
     displayName: Persistent Volume Class name
-    description: The class of the volume; gluster-file, gluster-block, gluster-file-db, netapp-file-standard
+    description: The class of the volume; gluster-file, gluster-block, gluster-file-db, gp2
     required: false
-    value: netapp-file-standard
+    value: gp2
   - name: CPU_REQUEST
     displayName: Resources CPU Request
     description: The resources CPU request (in cores) for this build.
