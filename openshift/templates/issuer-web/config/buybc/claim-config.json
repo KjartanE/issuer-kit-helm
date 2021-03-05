@@ -1,7 +1,7 @@
 {
   "questions": [
     {
-      "name": "given_names",
+      "name": "first_name",
       "type": "text",
       "title": "First Name:",
       "placeHolder": "",
@@ -9,7 +9,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "family_name",
+      "name": "last_name",
       "type": "text",
       "title": "Last Name:",
       "placeHolder": "",
@@ -17,75 +17,17 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "birthdate",
+      "name": "email",
       "type": "text",
-      "inputType": "date",
-      "title": "Date of Birth:",
+      "title": "Email Address:",
       "placeHolder": "",
       "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "street_address",
-      "type": "text",
-      "title": "Street Address:",
-      "placeHolder": "",
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "postal_code",
-      "type": "text",
-      "title": "Postal Code:",
-      "placeHolder": "",
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "locality",
-      "type": "text",
-      "title": "City:",
-      "placeHolder": "",
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "region",
-      "type": "text",
-      "title": "Province:",
-      "placeHolder": "",
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "country",
-      "type": "text",
-      "title": "Country:",
-      "placeHolder": "",
-      "defaultValue": "Canada",
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "type": "text",
-      "name": "issued",
-      "title": "Issued:",
-      "readOnly": true,
-      "isRequired": true
-    },
-    {
-      "type": "text",
-      "name": "placeholder",
-      "defaultValue": "placeholder",
-      "readOnly": true,
-      "visibleIf": "{issued} empty"
-    }
-  ],
-  "triggers": [
-    {
-      "type": "runexpression",
-      "expression": "{placeholder} notempty",
-      "runExpression": "setCurrentISODate('issued')"
+      "requiredErrorText": "Required Field",
+      "validators": [
+        {
+          "type": "email"
+        }
+      ]
     }
   ]
 }

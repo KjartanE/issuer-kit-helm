@@ -19,7 +19,7 @@
     {
       "name": "email",
       "type": "text",
-      "title": "Last Name:",
+      "title": "Email Address:",
       "placeHolder": "",
       "isRequired": true,
       "requiredErrorText": "Required Field",
