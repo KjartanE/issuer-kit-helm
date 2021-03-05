@@ -1,0 +1,24 @@
+{
+  "id": "buybc-issuer-admin",
+  "subject_identifier": "email",
+  "configuration": {
+    "name": "buybc-issuer-admin",
+    "version": "0.0.1",
+    "requested_attributes": [
+      {
+        "names": [
+          "first_name",
+          "last_name",
+          "email"
+        ],
+        "restrictions": [
+          {
+            "schema_name": "buybc-issuer-admin",
+            "schema_version": "0.0.1"
+          }
+        ]
+      }
+    ],
+    "requested_predicates": []
+  }
+}
