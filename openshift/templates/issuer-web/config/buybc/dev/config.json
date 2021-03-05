@@ -4,7 +4,7 @@
     "name": "BC Identity Kit"
   },
   "help": {
-    "enabled": false,
+    "enabled": true,
     "displayOnFirstVisit": false
   },
   "inviteRequired": true,
