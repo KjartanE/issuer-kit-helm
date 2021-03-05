@@ -1,0 +1,38 @@
+{
+  "env": "production",
+  "issuer": {
+    "name": "BC Identity Kit"
+  },
+  "help": {
+    "enabled": false,
+    "displayOnFirstVisit": false
+  },
+  "inviteRequired": true,
+  "authentication": {
+    "enabled": false,
+    "autoSignOut": true,
+    "oidcSettings": {
+      "authority": "https://sso.quartech.app/auth/realms/buybc",
+      "clientId": "buybc-web-issuer",
+      "redirectUri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/oidc-callback",
+      "redirect_uri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/oidc-callback-error",
+      "responseType": "code",
+      "scope": "openid profile email",
+      "automaticSilentRenew": true,
+      "silentRedirectUri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/silent-renew-oidc.html",
+      "post_logout_redirect_uri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com"
+    }
+  },
+  "apiServer": {
+    "url": "/api"
+  },
+  "issuedSuccess": {
+    "successText": "You have obtained a BuyBC Admin digital Credential. You can now access the issuer app at the following link:",
+    "links": [
+      {
+        "url": "https://buybc.quartech.app",
+        "description": "BuyBC OrgBook Issuer App"
+      }
+    ]
+  }
+}

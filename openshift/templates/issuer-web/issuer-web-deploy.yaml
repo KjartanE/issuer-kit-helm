@@ -257,11 +257,6 @@ parameters:
     name: IMAGE_NAMESPACE
     required: true
     value: devex-von-tools
-  - name: NAMESPACE_NAME
-    displayName: Namespace Name
-    description: The name of the namespace being deployed to..
-    required: true
-    value: devex-von
   - name: CADDY_CONFIG_FILE_NAME
     displayName: CAddy Config File Name
     description: The name of the configuration file to be used for Caddy.
@@ -346,7 +341,7 @@ parameters:
     displayName: Config Mount Path
     description: The path to use to mount the config file.
     required: true
-    value: off
+    value: "off"
   - name: API_HOST
     displayName: API Service Name
     description: The name of the API service.
