@@ -35,13 +35,13 @@
     "url": "PUBLIC_SITE_URL"
   },
   "issuer": {
-    "name": "Issuer Name",
-    "offerComment": "Credential offer from Issuer Name",
-    "validityDays": -1,
-    "multiUse": true
+    "name": "BuyBC Admin",
+    "offerComment": "Credential offer from BuyBC Admin",
+    "validityDays": 7,
+    "multiUse": false
   },
   "authentication": {
-    "jwksUri": "https://oidc.gov.bc.ca/auth/realms/gzyg46lx/protocol/openid-connect/certs",
+    "jwksUri": "https://sso.quartech.app/auth/realms/buybc/protocol/openid-connect/certs",
     "algorithms": ["RS256"]
   }
 }
