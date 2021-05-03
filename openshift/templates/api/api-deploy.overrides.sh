@@ -37,12 +37,16 @@ if createOperation; then
   readParameter "ADMIN_EMAIL - Please provide the email address to be used as sender for outgoing messages.  The default is a blank string." ADMIN_EMAIL "false"
   readParameter "SMTP_SERVER_ADDRESS - Please provide the address of the outgoing smtp server.  The default is a blank string." SMTP_SERVER_ADDRESS "false"
   readParameter "SMTP_SERVER_PORT - Please provide the address of the outgoing smtp server PORT.  The default is a blank string." SMTP_SERVER_PORT "false"
+  readParameter "SMTP_USER - Please provide the SMTP server user.  The default is a blank string." SMTP_USER "false"
+  readParameter "SMTP_PASSWORD - Please provide the SMTP server password.  The default is a blank string." SMTP_PASSWORD "false"
 else
   # Secrets are removed from the configurations during update operations ...
   printStatusMsg "Update operation detected ...Skipping the prompts for ADMIN_EMAIL, SMTP_SERVER_ADDRESS, and SMTP_SERVER_PORT environment variables ...\n"
   writeParameter "ADMIN_EMAIL" "prompt_skipped" "false"
   writeParameter "SMTP_SERVER_ADDRESS" "prompt_skipped" "false"
   writeParameter "SMTP_SERVER_PORT" "prompt_skipped" "false"
+  writeParameter "SMTP_USER" "prompt_skipped" "false"
+  writeParameter "SMTP_PASSWORD" "prompt_skipped" "false"
 fi
 
 SPECIALDEPLOYPARMS="--param-file=${_overrideParamFile}"

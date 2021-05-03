@@ -164,6 +164,16 @@ objects:
                     secretKeyRef:
                       name: ${NAME}${SUFFIX}
                       key: admin-email
+                - name: SMTP_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${NAME}${SUFFIX}
+                      key: smtp-user
+                - name: SMTP_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${NAME}${SUFFIX}
+                      key: smtp-password
                 - name: EMAIL_SUBJECT
                   valueFrom:
                     secretKeyRef:

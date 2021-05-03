@@ -1,7 +1,7 @@
 {
   "env": "production",
   "issuer": {
-    "name": "BC Identity Kit"
+    "name": "Buy BC"
   },
   "help": {
     "enabled": true,
@@ -14,13 +14,13 @@
     "oidcSettings": {
       "authority": "https://sso.quartech.app/auth/realms/buybc",
       "clientId": "buybc-web-issuer",
-      "redirectUri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/oidc-callback",
-      "redirect_uri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/oidc-callback-error",
+      "redirectUri": "https://buybc-issuer.apps.ds2isl2c.canadaeast.aroapp.io/oidc-callback",
+      "redirect_uri": "https://buybc-issuer.apps.ds2isl2c.canadaeast.aroapp.io/oidc-callback-error",
       "responseType": "code",
       "scope": "openid profile email",
       "automaticSilentRenew": true,
-      "silentRedirectUri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com/silent-renew-oidc.html",
-      "post_logout_redirect_uri": "https://buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com"
+      "silentRedirectUri": "https://buybc-issuer.apps.ds2isl2c.canadaeast.aroapp.io/silent-renew-oidc.html",
+      "post_logout_redirect_uri": "https://buybc-issuer.apps.ds2isl2c.canadaeast.aroapp.io"
     }
   },
   "apiServer": {

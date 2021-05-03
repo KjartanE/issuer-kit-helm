@@ -3,11 +3,12 @@
     "default": true,
     "public": false,
     "schema_name": "buybc-issuer-admin",
-    "schema_version": "0.0.1",
+    "schema_version": "0.0.3",
     "attributes": [
       "first_name",
       "last_name",
-      "email"
+      "email",
+      "authorization"
     ],
     "revocable": true,
     "tag": "buybc"

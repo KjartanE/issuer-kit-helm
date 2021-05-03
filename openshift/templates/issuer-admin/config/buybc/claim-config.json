@@ -28,6 +28,18 @@
           "type": "email"
         }
       ]
+    },
+    {
+      "type": "dropdown",
+      "name": "authorization",
+      "title": "Type of credentials managed:",
+      "isRequired": true,
+      "colCount": 0,
+      "choices": [
+        "Marketing",
+        "Certification",
+        "All"
+      ]
     }
   ]
 }

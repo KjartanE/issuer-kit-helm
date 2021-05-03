@@ -20,9 +20,13 @@
   "smtp": {
     "host": "SMTP_HOST",
     "port": "SMTP_PORT",
-    "secure": false,
+    "secure": true,
     "tls": {
       "rejectUnauthorized": false
+    },
+    "auth": {
+      "user": "SMTP_USER",
+      "pass": "SMTP_PASSWORD"
     }
   },
   "emailSettings": {

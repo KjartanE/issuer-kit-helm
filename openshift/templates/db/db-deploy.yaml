@@ -248,9 +248,9 @@ parameters:
     value: 1Gi
   - name: PERSISTENT_VOLUME_CLASS
     displayName: Persistent Volume Class name
-    description: The class of the volume; gluster-file, gluster-block, gluster-file-db, gp2
+    description: The class of the volume; gluster-file, gluster-block, gluster-file-db, managed-premium
     required: false
-    value: gp2
+    value: managed-premium
   - name: CPU_REQUEST
     displayName: Resources CPU Request
     description: The resources CPU request (in cores) for this build.

@@ -8,7 +8,7 @@
 # APP_GROUP=issuer-kit-public
 # SUFFIX=-buybc
 # ROLE=public-frontend
-# IMAGE_NAMESPACE=emilianosune-dev
+# IMAGE_NAMESPACE=issuer-kit-demo-tools
 # CADDY_CONFIG_FILE_NAME=Caddyfile
 # CADDY_CONFIG_MAP_NAME=issuer-web-caddy-conf
 # CADDY_CONFIG_MOUNT_PATH=/etc/caddy/
@@ -28,9 +28,9 @@
 # WEB_HOST_TLS=off
 # API_HOST=api
 # API_PORT=8080
-APPLICATION_DOMAIN=buybc-issuer.apps.sandbox.x8i5.p1.openshiftapps.com
+APPLICATION_DOMAIN=buybc-issuer.apps.ds2isl2c.canadaeast.aroapp.io
 # SOURCE_IMAGE_NAME=issuer-kit-web
-TAG_NAME=latest
+TAG_NAME=dev
 # CPU_REQUEST=10m
 # CPU_LIMIT=250m
 # MEMORY_REQUEST=100Mi
