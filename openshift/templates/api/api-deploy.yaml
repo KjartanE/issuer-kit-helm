@@ -20,6 +20,8 @@ objects:
     stringData:
       smtp-host: ${SMTP_SERVER_ADDRESS}
       smtp-port: ${SMTP_SERVER_PORT}
+      smtp-user: ${SMTP_USER}
+      smtp-password: ${SMTP_PASSWORD}
       admin-email: ${ADMIN_EMAIL}
       invite-subject: ${EMAIL_SUBJECT}
     type: Opaque
@@ -296,6 +298,16 @@ parameters:
   - name: SMTP_SERVER_PORT
     displayName: SMTP Server Port
     description: SMTP Server Port
+    required: true
+    value: ""
+  - name: SMTP_USER
+    displayName: SMTP User
+    description: The SMTP server user.
+    required: true
+    value: ""
+  - name: SMTP_PASSWORD
+    displayName: SMTP Password
+    description: The SMTP server password.
     required: true
     value: ""
   - name: ADMIN_EMAIL
