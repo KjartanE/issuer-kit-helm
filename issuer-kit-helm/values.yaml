@@ -1,0 +1,131 @@
+# Default values for issuer-kit-helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+environment: dev #this will be replaced with Dev/Test/Prod
+domainName: iafbc.ca
+
+imageRegistry: iafbuybc.azurecr.io
+
+issuerName: issuer-kit-admin
+issuerConfigMountPath: /config/
+
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+configs:
+  - config/config.json
+  - config/claim-config.json
+  - config/custom-scripts.js
+  - config/logo.svg
+  - config/unauthorized.html
+  - config/vuetify.json
+
+APP_NAME: issuer-kit
+APP_GROUP: issuer-kit-public
+ROLE: public-frontend
+IMAGE_NAMESPACE: devex-von-tools
+CADDY_CONFIG_FILE_NAME: Caddyfile
+CADDY_CONFIG_MAP_NAME: issuer-kit-admin-caddy-conf
+CADDY_CONFIG_MOUNT_PATH: /etc/caddy/
+APP_CONFIG_MAP_NAME: issuer-kit-admin-config
+APP_CONFIG_MOUNT_PATH: /config/
+APP_CLAIM_CONFIG_FILE_NAME: claim-config.json
+APP_CONFIG_FILE_NAME: config.json
+APP_CUSTOM_SCRIPTS_FILE_NAME: custom-scripts.js
+APP_VUETIFY_FILE_NAME: vuetify.json
+APP_ARTIFACT_MOUNT_PATH: /srv/
+APP_LOGO_FILE_NAME: logo.svg
+APP_TERMS_FILE_NAME: terms-and-conditions.html
+APP_UNAUTHORIZED_FILE_NAME: unauthorized.html
+APP_HELP_FILE_NAME: help.html
+WEB_HOST_NAME: ""
+WEB_HOST_PORT: "8080"
+WEB_HOST_TLS: "off"
+API_HOST: issuer-kit-api
+API_PORT: "8080"
+APPLICATION_DOMAIN: ""
+SOURCE_IMAGE_NAME: issuer-kit-admin
+TAG_NAME: latest
+CPU_REQUEST: 10m
+CPU_LIMIT: 250m
+MEMORY_REQUEST: 100Mi
+MEMORY_LIMIT: 256Mi
+
+

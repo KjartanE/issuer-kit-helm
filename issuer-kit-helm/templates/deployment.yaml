@@ -1,0 +1,111 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.issuerName}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.issuerName}}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ .Values.issuerName}}
+    spec:
+      volumes:
+        - name: {{ .Values.issuerName}}-config
+          configMap:
+            name: {{ .Values.issuerName}}-config
+            items:
+              - key: issuer-kit-admin-config.yaml
+                path: issuer-kit-admin-config.yaml
+            defaultMode: 420
+        - name: {{ .Values.issuerName}}-caddy-config-volume
+          configMap:
+            name: {{.Values.CADDY_CONFIG_FILE_NAME}}
+            items:
+              - key: {{.Values.CADDY_CONFIG_FILE_NAME}}
+                path: {{.Values.CADDY_CONFIG_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-claim-config-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_CLAIM_CONFIG_FILE_NAME}}
+                path: {{.Values.APP_CLAIM_CONFIG_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-config-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_CONFIG_FILE_NAME}}
+                path: {{.Values.APP_CONFIG_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-custom-scripts-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_CUSTOM_SCRIPTS_FILE_NAME}}
+                path: {{.Values.APP_CUSTOM_SCRIPTS_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-logo-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_LOGO_FILE_NAME}}
+                path: {{.Values.APP_LOGO_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-unauthorized-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_UNAUTHORIZED_FILE_NAME}}
+                path: {{.Values.APP_UNAUTHORIZED_FILE_NAME}}
+        - name: {{ .Values.issuerName}}-app-vuetify-volume
+          configMap:
+            name: {{ .Values.APP_CONFIG_MAP_NAME}}
+            items:
+              - key: {{.Values.APP_VUETIFY_FILE_NAME}}
+                path: {{.Values.APP_VUETIFY_FILE_NAME}}
+      containers:
+        - name: {{ .Values.issuerName}}
+          image: '{{ .Values.imageRegistry}}/{{ .Values.issuerName}}:{{ .Values.environment}}'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: {{ .Values.issuerName}}-config
+              mountPath: {{ .Values.issuerConfigMountPath}}
+
+            - name: {{ .Values.issuerName}}-caddy-config-volume
+              mountPath: {{.Values.CADDY_CONFIG_MOUNT_PATH}}{{.Values.CADDY_CONFIG_FILE_NAME}}
+              subPath: {{.Values.CADDY_CONFIG_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-claim-config-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_CLAIM_CONFIG_FILE_NAME}}
+              subPath: {{.Values.APP_CLAIM_CONFIG_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-config-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_CONFIG_FILE_NAME}}
+              subPath: {{.Values.APP_CONFIG_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-custom-scripts-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_CUSTOM_SCRIPTS_FILE_NAME}}
+              subPath: {{.Values.APP_CUSTOM_SCRIPTS_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-vuetify-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_VUETIFY_FILE_NAME}}
+              subPath: {{.Values.APP_VUETIFY_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-logo-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_LOGO_FILE_NAME}}
+              subPath: {{.Values.APP_LOGO_FILE_NAME}}
+            - name: {{ .Values.issuerName}}-app-unauthorized-volume
+              mountPath: {{ .Values.issuerConfigMountPath}}{{.Values.APP_UNAUTHORIZED_FILE_NAME}}
+              subPath: {{.Values.APP_UNAUTHORIZED_FILE_NAME}}
+          terminationMessagePath: /test/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

@@ -1,0 +1,45 @@
+{
+  "questions": [
+    {
+      "name": "first_name",
+      "type": "text",
+      "title": "First Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "last_name",
+      "type": "text",
+      "title": "Last Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "email",
+      "type": "text",
+      "title": "Email Address:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field",
+      "validators": [
+        {
+          "type": "email"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "authorization",
+      "title": "Type of credentials managed:",
+      "isRequired": true,
+      "colCount": 0,
+      "choices": [
+        "Marketing",
+        "Certification",
+        "All"
+      ]
+    }
+  ]
+}
